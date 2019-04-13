@@ -1,0 +1,52 @@
+{% extends "basic_app/base.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+      <style type="text/css">
+        #DivBox {
+        font-family:Arial,sans-serif;
+        font-size:10px;
+        color:#4F8A10;
+        background:#DFF2BF;
+        width:300px;
+        text-align:center;
+        padding:4px 5px 4px 5px;
+        font-weight:bold;
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+        }
+
+        @-webkit-keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity: 1;}
+        }
+
+        @keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity:1 ;}
+        }
+      </style>
+      {% if registered %}
+        <div id="DivBox" title="Pop up message">Thank You For Registration</div><br>
+
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <input type="submit" name="" class="btn btn-primary" value="Register">
+        </form>
+
+      {% else %}
+        <h1>Register Here</h1>
+        <br>
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <input type="submit" name="" class="btn btn-primary" value="Register">
+        </form>
+
+      {% endif %}
+
+{% endblock %}
